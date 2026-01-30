@@ -1,0 +1,9 @@
+---
+title: "Billboard Hot 100"
+---
+
+
+This project is an assignment in the Reporting with Data class at the University of Texas at Austin. 
+
+It is a study of [Billboard Hot 100](https://www.billboard.com/charts/hot-100/) chart data as collected and updated by Christian McDonald in a [Github repo](https://github.com/utdata/rwd-billboard-data). While the archive was compiled through a number of methods, the original source is Billboard Magazine, owned by the Penske Media Corporation. The data dates back to the Hot 100's beginning in August 1958 and is updated weekly, but the end date here will depend on when the user runs the code.
+
