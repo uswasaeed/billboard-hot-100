@@ -1,4 +1,0 @@
-"0","#| label: export"
-"0",""
-"0","hot100_clean |> "
-"0","  write_rds(""data-processed/01-hot100.rds"")"
