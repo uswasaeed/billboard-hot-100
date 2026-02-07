@@ -10,6 +10,16 @@
     ]
   },
   {
+    "objectID": "index.html#summary",
+    "href": "index.html#summary",
+    "title": "Billboard Hot 100",
+    "section": "Summary",
+    "text": "Summary\nTaylor Swift has had more solo appearances on the Billboard Hot 100 chart than any other artist, according to an analysis of chart data from Billboard Magazine. Her 1,713 solo appearances tops Morgan Wallen and Drake, though this analysis does not reflect collaborations with other artists.\nThe chart has been published weekly since August 1958, and this analysis includes data through January 27, 2026. The chart data was pulled from an archive managed by Christian McDonald, which is updated each week.\nOther findings from the data analysis include:\n\nData Takeaway: The song “Lose Control” by Teddy Swims has appeared 112 times on the Hot 100, more than any other song through January 2026. “Heat Waves” by Glass Animals has the next most appearances with 91.\nMariah Carey’s “All I Want For Christmas Is You” has spent the most time at the top of the Billboard Hot 100 through January 27, 2026 with 22 appearances.\nThe Beatles have the most No. 1 hits on the Billboard Hot 100 charts with 19, but they also have a 20th top song – “Get Back” – that is a collaboration with Billy Preston. Most other artists with double-digit top hits aren’t making new music, with the exception of Mariah Carey and Taylor Swift.\nTaylor Swift not only has the most appearances of all time in the Hot 100, she also has the most No. 1 hits in the past five years with seven.\nTaylor Swift has the most Top 10 hits overall on the Billboard Hot 100, with 61 songs reaching positions 1 through 10. Her total is significantly higher than most other performers, with Madonna coming second with 36 songs.\nBTS’ chart presence on the Billboard Hot 100 is led by “Dynamite,” which appears 32 times, and “Butter,” which follows with 20 appearances.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
     "objectID": "01-cleaning.html",
     "href": "01-cleaning.html",
     "title": "Cleaning",
@@ -100,13 +110,113 @@
     ]
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "02-analysis.html",
+    "href": "02-analysis.html",
+    "title": "Analysis",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2",
+    "text": "Exploring the Billboard Hot 100 data.",
     "crumbs": [
-      "About"
+      "Analysis"
+    ]
+  },
+  {
+    "objectID": "02-analysis.html#goal-of-this-notebook",
+    "href": "02-analysis.html#goal-of-this-notebook",
+    "title": "Analysis",
+    "section": "",
+    "text": "Exploring the Billboard Hot 100 data.",
+    "crumbs": [
+      "Analysis"
+    ]
+  },
+  {
+    "objectID": "02-analysis.html#setup",
+    "href": "02-analysis.html#setup",
+    "title": "Analysis",
+    "section": "Setup",
+    "text": "Setup\nLoading the libraries.\n\nlibrary(tidyverse)\nlibrary(janitor)",
+    "crumbs": [
+      "Analysis"
+    ]
+  },
+  {
+    "objectID": "02-analysis.html#import-the-data",
+    "href": "02-analysis.html#import-the-data",
+    "title": "Analysis",
+    "section": "Import the data",
+    "text": "Import the data\n\nhot100 &lt;- read_rds(\"data-processed/01-hot100.rds\")\n\nhot100 |&gt; glimpse()\n\nRows: 352,100\nColumns: 7\n$ chart_date    &lt;date&gt; 1958-08-04, 1958-08-04, 1958-08-04, 1958-08-04, 1958-08…\n$ current_rank  &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1…\n$ title         &lt;chr&gt; \"Poor Little Fool\", \"Patricia\", \"Splish Splash\", \"Hard H…\n$ performer     &lt;chr&gt; \"Ricky Nelson\", \"Perez Prado And His Orchestra\", \"Bobby …\n$ previous_rank &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ peak_rank     &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1…\n$ wks_on_chart  &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…",
+    "crumbs": [
+      "Analysis"
+    ]
+  },
+  {
+    "objectID": "02-analysis.html#performer-with-most-appearances",
+    "href": "02-analysis.html#performer-with-most-appearances",
+    "title": "Analysis",
+    "section": "Performer with most appearances",
+    "text": "Performer with most appearances\nUsing summarize to count the performer with the most appearances on the Hot 100.\n\nhot100 |&gt;\n  group_by(performer) |&gt;\n  summarize(appearances = n()) |&gt;\n  arrange(desc(appearances)) |&gt;\n  head(10)\n\n\n  \n\n\n\nData Takeaway: Taylor Swift has more solo appearances on the Billboard Hot 100 than any other artist in history with 1,713 appearances through January 27, 2026. This does not include collaborations with other artists.",
+    "crumbs": [
+      "Analysis"
+    ]
+  },
+  {
+    "objectID": "02-analysis.html#song-with-most-appearances",
+    "href": "02-analysis.html#song-with-most-appearances",
+    "title": "Analysis",
+    "section": "Song with most appearances",
+    "text": "Song with most appearances\nUsing summarize to count the song with the most appearances on the Hot 100.\n\nhot100 |&gt;\n  group_by(performer, title) |&gt;\n  summarize(appearances = n()) |&gt;\n  arrange(desc(appearances)) |&gt;\n  filter(appearances &gt;= 65)\n\n`summarise()` has grouped output by 'performer'. You can override using the\n`.groups` argument.\n\n\n\n  \n\n\n\nData Takeaway: The song “Lose Control” by Teddy Swims has appeared 112 times on the Billboard Hot 100 chart, more than any other song through January 27, 2026. “Heat Waves” by Glass Animals is second with 91 appearances.",
+    "crumbs": [
+      "Analysis"
+    ]
+  },
+  {
+    "objectID": "02-analysis.html#song-at-no.-1-the-longest",
+    "href": "02-analysis.html#song-at-no.-1-the-longest",
+    "title": "Analysis",
+    "section": "Song at No. 1 the longest",
+    "text": "Song at No. 1 the longest\nFiltering to find out which song was at No. 1 on the Billboard Hot 100 the longest.\n\nhot100 |&gt; \n  filter(current_rank == 1) |&gt; \n  group_by(performer, title) |&gt;\n  summarize(appearances = n()) |&gt;\n  arrange(desc(appearances)) |&gt;\n  filter(appearances &gt;= 15)\n\n`summarise()` has grouped output by 'performer'. You can override using the\n`.groups` argument.\n\n\n\n  \n\n\n\nData Takeaway: Mariah Carey’s “All I Want For Christmas Is You” has spent the most time at the top of the Billboard Hot 100 through January 27, 2026 with 22 appearances.",
+    "crumbs": [
+      "Analysis"
+    ]
+  },
+  {
+    "objectID": "02-analysis.html#performer-at-no.-1-the-longest",
+    "href": "02-analysis.html#performer-at-no.-1-the-longest",
+    "title": "Analysis",
+    "section": "Performer at No. 1 the longest",
+    "text": "Performer at No. 1 the longest\nFiltering to find out which performer has had the most titles reach No. 1 on the Billboard Hot 100.\n\nhot100 |&gt; \n  filter(current_rank == 1) |&gt;\n  distinct(title, performer) |&gt;\n  group_by(performer) |&gt;\n  summarize(no1_hits = n()) |&gt;\n  arrange(desc(no1_hits)) |&gt;\n  filter(no1_hits &gt;= 10)\n\n\n  \n\n\n\nData Takeaway: The Beatles have the most No. 1 hits on the Billboard Hot 100 charts with 19, but they also have a 20th top song – “Get Back” – that is a collaboration with Billy Preston. Most other artists with double-digit top hits aren’t making new music, with the exception of Mariah Carey and Taylor Swift.",
+    "crumbs": [
+      "Analysis"
+    ]
+  },
+  {
+    "objectID": "02-analysis.html#most-no.-1-hits-in-past-five-years",
+    "href": "02-analysis.html#most-no.-1-hits-in-past-five-years",
+    "title": "Analysis",
+    "section": "Most No. 1 hits in past five years",
+    "text": "Most No. 1 hits in past five years\nFiltering to find the performer with the most No. 1 hits in the past five years.\n\nhot100 |&gt; \n  filter(\n    current_rank == 1,\n    chart_date &gt;= \"2020-01-01\"\n  ) |&gt; \n  distinct(title, performer) |&gt; \n  group_by(performer) |&gt; \n  summarize(top_hits = n()) |&gt; \n  arrange(desc(top_hits)) |&gt; \n  filter(top_hits &gt; 1)\n\n\n  \n\n\n\nData Takeaway: Taylor Swift not only has the most appearances of all time in the Hot 100, she also has the most No. 1 hits in the past five years with seven.",
+    "crumbs": [
+      "Analysis"
+    ]
+  },
+  {
+    "objectID": "02-analysis.html#performer-with-most-top-10-hits",
+    "href": "02-analysis.html#performer-with-most-top-10-hits",
+    "title": "Analysis",
+    "section": "Performer with most Top 10 hits",
+    "text": "Performer with most Top 10 hits\nFiltering to find the performer with the most Top 10 hits overall.\n\nhot100 |&gt; \n  filter(current_rank &lt;= 10) |&gt; \n  distinct(title, performer) |&gt; \n  group_by(performer) |&gt; \n  summarize(top10_hits = n()) |&gt; \n  arrange(desc(top10_hits)) |&gt;\n  filter(top10_hits &gt;= 25)\n\n\n  \n\n\n\nData Takeaway: Taylor Swift has the most Top 10 hits overall on the Billboard Hot 100, with 61 songs reaching positions 1 through 10. Her total is significantly higher than most other performers, with Madonna coming second with 36 songs.",
+    "crumbs": [
+      "Analysis"
+    ]
+  },
+  {
+    "objectID": "02-analysis.html#bts-song-with-most-appearances",
+    "href": "02-analysis.html#bts-song-with-most-appearances",
+    "title": "Analysis",
+    "section": "BTS song with most appearances",
+    "text": "BTS song with most appearances\nFiltering to find the BTS song with the most appearances in the Billboard Hot 100.\n\nhot100 |&gt; \n  filter(performer == \"BTS\") |&gt; \n  group_by(title) |&gt; \n  summarize(appearances = n()) |&gt; \n  arrange(desc(appearances)) |&gt;\n  filter(appearances &gt;= 3)\n\n\n  \n\n\n\nData Takeaway: BTS’ chart presence on the Billboard Hot 100 is led by “Dynamite,” which appears 32 times, and “Butter,” which follows with 20 appearances.",
+    "crumbs": [
+      "Analysis"
     ]
   }
 ]
